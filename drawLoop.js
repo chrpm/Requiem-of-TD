@@ -66,5 +66,6 @@ $(".towerButton").on('click', function() {
 })
 
 $("#startBtn").on('click', function() {
-  //Add start button calls
+  $(this).hide();
+  $("#restartBtn").show();
 })
