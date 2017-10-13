@@ -49,7 +49,7 @@ function drawTowers() {
     centerY = towerLocations[i][1]*25 + 13;
     context.beginPath();
     context.arc(centerX, centerY, radius, 0, 2 * Math.PI, false);
-    context.fillStyle = 'green';
+    context.fillStyle = towerColor;
     context.fill();
     context.lineWidth = 5;
     context.strokeStyle = '#003300';
@@ -67,5 +67,10 @@ $(".towerButton").on('click', function() {
 
 $("#startBtn").on('click', function() {
   $(this).hide();
-  $("#restartBtn").show();
+  $("#resetBtn").show();
+})
+
+$("#resetBtn").on('click', function() {
+  $(this).hide();
+  $("#startBtn").show();
 })
