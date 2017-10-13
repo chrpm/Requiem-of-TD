@@ -41,6 +41,10 @@ function drawPath(){
 }
 bricks.src = "images/bricks.png";
 
+function drawMoney() {
+    $('#money').text(money);
+}
+
 function drawTowerButtons() {
     let container = $('#towerButtons');
     $(container).empty();
@@ -57,10 +61,9 @@ function drawTowerButtons() {
 
 $(document).ready(function() {
     populatePath();
-    context.fillStyle = "white";
-    context.fillRect(0,0,canvas.width,canvas.height);
-    drawPath();
+    resetGame();
     drawTowerButtons();
+    drawMoney();
 
     $(".towerButton").on('click', function() {
 	$(".selectedTower").removeClass("selectedTower");

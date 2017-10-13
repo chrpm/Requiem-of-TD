@@ -37,7 +37,7 @@ class Tower {
 }
 
 class Enemy {
-    constructor(ctx, x, y, health = 100, atk = 10, speed = 3, color = 'green', width = 15) {
+    constructor(ctx, x, y, health = 100, atk = 10, speed = 3, color = 'green', width = 15, moneyValue = 10, scoreValue = 10) {
 	this.ctx = ctx;
 	this.x = x;
 	this.y = y;
@@ -46,6 +46,8 @@ class Enemy {
 	this.speed = speed;
 	this.color = color;
 	this.width = width;
+	this.moneyValue = moneyValue;
+	this.scoreValue = scoreValue;
 
 	this.targetIndex = 0;
 	
