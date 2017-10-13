@@ -27,8 +27,46 @@ header {
 }
 
 div#gameInfo {
-    
+  position: absolute;
+  margin: 5px;
+  width: 20%;
+  right: 0;
 }
 
-div#canvasContainer {
+.btn-group .button {
+    border: 2px solid black;
+    color: black;
+    width: 50%;
+    padding: 10px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    cursor: pointer;
+    float: left;
+    margin: 5px;
+}
+
+p[data-color="green"] {
+    background-color: green;
+}
+
+p[data-color="yellow"] {
+    background-color: yellow;
+}
+
+p[data-color="red"] {
+    background-color: red;
+}
+}
+.btn-group .button:hover {
+    background-color: slategrey;
+}
+
+div#gameInfo {
+  text-align: center;
+}
+
+div#towerSelection {
+  text-align: center;
 }
