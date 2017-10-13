@@ -41,8 +41,9 @@ function drawPath(){
 }
 bricks.src = "images/bricks.png";
 
-function drawMoney() {
+function drawStats() {
     $('#money').text(Math.floor(money));
+    $('#score').text(Math.floor(score));
     $('#health').text(Math.floor(playerHealth));
 }
 
@@ -68,7 +69,7 @@ $(document).ready(function() {
     populatePath();
     resetGame();
     drawTowerButtons();
-    drawMoney();
+    drawStats();
     update_scores();
 
     $(".towerButton").on('click', function() {

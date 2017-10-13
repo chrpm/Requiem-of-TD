@@ -15,7 +15,7 @@ var gameInterval,
 var spawnInt = [];
 
 var towerTypes = [
-    ['Lightning', [50, 100, 1.5, 'blue']],
+    ['Lightning', [65, 100, 1.5, 'blue']],
     ['Fire', [200, 50, 5, 'red']],
 ];
 
@@ -33,7 +33,7 @@ function addTower(x, y) {
 
     if (money >= tCost) {
 	money -= tCost;
-	drawMoney();
+	drawStats();
 	
 	towerLocations.push([x, y]);
 	towers.push(new Tower(
@@ -124,14 +124,14 @@ function resetGame() {
     context.fillRect(0, 0, canvas.width, canvas.height);
 
     drawPath();
-    drawMoney();
+    drawStats();
     drawWave();
 }
 
 function gameEnd() {
     $("#resetBtn").hide();
     $("#startBtn").show();
-    highscore(score);
+    highscore(Math.floor(score));
     resetGame();
 }
 
@@ -165,7 +165,7 @@ function gameLoop() {
 	    
 	    money += e.moneyValue;
         score += e.scoreValue;
-	    drawMoney();
+	    drawStats();
 	    enemies.splice(i, 1);
 	} else {
 	    e.move();
