@@ -6,6 +6,7 @@ var towerColor = $(".selectedTower").attr("data-color");
 var initialPosition = [0,1];
 var pathLocations = [];
 var enemyTargets = [];
+var towers = [];
 
 function populatePath() { 
   var path = [['r', 17],['d', 4],['l', 15],['d', 4],['r', 10],['d', 12]];
