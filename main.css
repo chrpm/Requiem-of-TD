@@ -2,6 +2,7 @@ body {
   margin: 5px;
   padding: 0;
   background-image: url("./images/texture.jpg");
+  background-size: cover;
   color: lightgray;
   font-family: "Times New Roman", serif;
   overflow-x: hidden;
@@ -22,7 +23,7 @@ header {
   vertical-align: middle;
   color: white;
   text-shadow: 1px 1px 2px black, 0 0 25px yellow, 0 0 5px gold;
-  background-color: rgba(255,255,255,0.4);
+  background-color: rgba(255,255,255,0.8);
   border-radius: 5px;
   padding: 3px;
   margin: 0;
@@ -87,18 +88,60 @@ div#towerSelection {
   text-align: center;
 }
 
+header img {
+  padding: 0; 
+}
+
 header img.right {
   position: absolute;
-  padding: 0;
-  right: 20px;
+  right: 2%;
   top: 0;
+  -webkit-animation-name: exampleRight; /* Safari 4.0 - 8.0 */
+  -webkit-animation-duration: 4s; /* Safari 4.0 - 8.0 */
+  -webkit-animation-iteration-count: infinite; /* Safari 4.0 - 8.0 */
+  animation-name: exampleRight;
+  animation-duration: 4s;
+  animation-iteration-count: infinite;
+}
+
+/* Safari 4.0 - 8.0 */
+@-webkit-keyframes exampleRight {
+    0%   {right:2%;}
+    50%  {right:20%;}
+    100% {right:2%;}
+}
+
+/* Standard syntax */
+@keyframes exampleLeft {
+    0%   {right:2%;}
+    50%  {right:20%;}
+    100% {right:2%;}
 }
 
 header img.left {
   position: absolute;
-  padding: 0;
-  left: 20px;
+  left: 2%;
   top: 0;
+  -webkit-animation-name: exampleLeft; /* Safari 4.0 - 8.0 */
+  -webkit-animation-duration: 4s; /* Safari 4.0 - 8.0 */
+  -webkit-animation-iteration-count: infinite; /* Safari 4.0 - 8.0 */
+  animation-name: exampleLeft;
+  animation-duration: 4s;
+  animation-iteration-count: infinite;
+}
+
+/* Safari 4.0 - 8.0 */
+@-webkit-keyframes exampleLeft {
+    0%   {left:0px; top:0px;}
+    50%  {left:200px; top:200px;}
+    100% {left:0px; top:0px;}
+}
+
+/* Standard syntax */
+@keyframes exampleLeft {
+    0%   {left:2%; top:0px;}
+    50%  {left:20%; top:0px;}
+    100% {left:2%; top:0px;}
 }
 
 header h1 {
