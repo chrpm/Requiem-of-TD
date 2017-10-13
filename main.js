@@ -5,7 +5,6 @@ var towerColor = $(".selectedTower").attr("data-color");
 
 var initialPosition = [0,1];
 var pathLocations = [];
-var towerLocations = [];
 var enemyTargets = [];
 
 function populatePath() { 
@@ -42,29 +41,42 @@ function drawPath(){
 }
 bricks.src = "images/bricks.png";
 
-window.onload = function() {
+function drawTowerButtons() {
+    let container = $('#towerButtons');
+    $(container).empty();
+    for (let [i, [name, [cost, range, attack, color]]] of towerTypes.entries()) {
+	let b = $("<button>", {
+	    "class": `button towerButton${i == 0 ? ' selectedTower' : ''}`,
+	    "value": i,
+	    "style": `background-color: ${color}`,
+	}).text(`${name} - ${cost}`);
+	
+	$(container).append(b);
+    }
+}
+
+$(document).ready(function() {
     populatePath();
     context.fillStyle = "white";
     context.fillRect(0,0,canvas.width,canvas.height);
     drawPath();
-};
+    drawTowerButtons();
 
-$(".towerButton").on('click', function() {
-    $(this).addClass("selectedTower");
-    $(".selectedTower").removeClass("selectedTower");
-    $(this).addClass("selectedTower");
-    damage = $(this).data("data-damage");
-    towerColor = $(this).attr("data-color");
-})
+    $(".towerButton").on('click', function() {
+	$(".selectedTower").removeClass("selectedTower");
+	$(this).addClass("selectedTower");
+    })
 
-$("#startBtn").on('click', function() {
-    $(this).hide();
-    $("#resetBtn").show();
-    startGame();
-})
+    $("#startBtn").on('click', function() {
+	$(this).hide();
+	$("#resetBtn").show();
+	startGame();
+    })
 
-$("#resetBtn").on('click', function() {
-    $(this).hide();
-    $("#startBtn").show();
-    resetGame();
-})
+    $("#resetBtn").on('click', function() {
+	$(this).hide();
+	$("#startBtn").show();
+	resetGame();
+    })
+});
+
