@@ -1,34 +1,3 @@
-// class Projectile {
-//     constructor(ctx, x, y, target, damage = 10, speed = 5, color = 'red') {
-// 	this.ctx = ctx;
-// 	this.x = x;
-// 	this.y = y;
-// 	this.target = target;
-// 	this.damage = damage;
-// 	this.speed = speed;
-// 	this.color = color;
-
-// 	this.radius = 3;
-//     }
-
-//     move() {
-// 	xdist = target.x - this.x;
-// 	ydist = target.y - this.y;
-// 	theta = Math.atan(xdist/ydist);
-
-// 	dx = Math.sin(theta)*xdist;
-// 	dy = Math.sin(theta)*ydist;
-// 	console.log(dx, dy);
-//     }
-    
-//     draw() {
-// 	this.ctx.beginPath();
-// 	this.ctx.arc(this.x, this.y, this.radius, 0, 2*Math.PI);
-// 	this.ctx.fillStyle = this.color;
-// 	this.ctx.fill();
-//     }
-// }
-
 class Tower {
     constructor(ctx, x, y, range = 5, color = 'blue') {
 	this.ctx = ctx;
@@ -54,8 +23,8 @@ class Tower {
     }
 
     targetInRange(target) {
-	dx = target.x - this.x;
-	dy = target.y - this.y;
+	let dx = target.x - this.x;
+	let dy = target.y - this.y;
 	return Math.sqrt(dx*dx + dy*dy) <= this.range;
     }
 }
@@ -70,10 +39,44 @@ class Enemy {
 	this.speed = speed;
 	this.color = color;
 	this.width = width;
+
+	this.targetIndex = 0;
+	
 	this.draw();
     }
 
-    move() {}
+    nextTarget() {
+	if (this.targetIndex + 1 < enemyTargets.length) {
+	    this.targetIndex += 1;
+	}
+    }
+
+    move() {
+	let target = enemyTargets[this.targetIndex];
+	let tx = target[0];
+	let ty = target[1];
+	
+	let dx = Math.abs(this.x - tx);
+	let dy = Math.abs(this.y - ty);
+	
+	if (dx > 0) {
+	    if (dx <= this.speed) {
+		this.x = tx;
+		this.nextTarget();
+	    } else {
+		this.x += speed;
+	    }
+	} else if (dy > 0) {
+	    if (dy <= this.speed) {
+		this.y = ty;
+		this.nextTarget();
+	    } else {
+		this.y += speed;
+	    }
+	} else {
+	    this.nextTarget();
+	}
+    }
     
     draw() {
 	this.ctx.fillStyle = this.color;
