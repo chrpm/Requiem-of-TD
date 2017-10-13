@@ -14,8 +14,7 @@ function getPosition(event)
     if (isPointTaken(x,y)) {
         return;
     }
-    towerLocations.push([x,y]);
-    towers.push(new Tower(context, x*25+12, y*25+12));
+    addTower(x, y);
 }
 
 function isPointTaken (x, y) {
