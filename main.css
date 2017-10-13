@@ -1,0 +1,86 @@
+body {
+  margin: 5px;
+  padding: 0;
+  background-image: url("/images/texture.jpg");
+  color: lightgray;
+  font-family: "Times New Roman", serif;
+  overflow-x: hidden;
+  height: auto;
+}
+
+#game_canvas {
+  display: block;
+  border: 4px solid rgb(77,79,81);
+  left: auto;
+  padding: 0px;
+  margin: 10px auto 10px auto;  
+}
+
+header {
+  text-align: center;
+  color: white;
+  text-shadow: 1px 1px 2px black, 0 0 25px yellow, 0 0 5px gold;
+  background-color: rgba(255,255,255,0.4);
+  border-radius: 5px;
+  padding: 3px;
+  margin: 0;
+}
+
+div#gameInfo {
+  position: absolute;
+  margin: 5px;
+  width: 20%;
+  right: 0;
+}
+
+.btn-group .button {
+  border: 2px solid black;
+  color: black;
+  width: 50%;
+  padding: 10px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  cursor: pointer;
+  float: left;
+  margin: 5px;
+}
+
+.btn-group .towerButton {
+  opacity: 0.5;
+}
+
+.btn-group .towerButton:hover {
+  opacity: 1.0;
+}
+
+.button[data-color="green"] {
+  background-color: green;
+}
+
+.button[data-color="yellow"] {
+  background-color: yellow;
+}
+
+.button[data-color="red"] {
+  background-color: red;
+}
+
+.btn-group .button.selectedTower {
+  opacity: 1;
+}
+
+div#gameInfo {
+  text-align: center;
+}
+
+div#gameInfo div {
+  text-align: center;
+  margin: 5px;
+  padding 0;
+}
+
+div#towerSelection {
+  text-align: center;
+}

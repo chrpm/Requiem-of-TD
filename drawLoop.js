@@ -1,5 +1,7 @@
 var canvas = document.getElementById('game_canvas');
 var context = canvas.getContext('2d');
+var damage = $(".selectedTower").attr("data-damage");
+var towerColor = $(".selectedTower").attr("data-color");
 
 var initialPosition = [0,1];
 var pathLocations = [];
@@ -33,28 +35,28 @@ function populatePath() {
 
 bricks = new Image();
 function drawPath(){
-    for (i = 0, len = pathLocations.length; i < len; i++) {
-        context.drawImage(bricks, pathLocations[i][0]*25, pathLocations[i][1]*25);
-    }
+  for (i = 0, len = pathLocations.length; i < len; i++) {
+    context.drawImage(bricks, pathLocations[i][0]*25, pathLocations[i][1]*25);
+  }
 }
 bricks.src = "images/bricks.png";
 
 function drawTowers() {
-    var centerX;
-    var centerY;
-    var radius = 8;
+  var centerX;
+  var centerY;
+  var radius = 8;
 
-    for(i = 0, len = towerLocations.length; i < len; i++) {
-        centerX = towerLocations[i][0]*25 + 13;
-        centerY = towerLocations[i][1]*25 + 13;
-        context.beginPath();
-        context.arc(centerX, centerY, radius, 0, 2 * Math.PI, false);
-        context.fillStyle = 'green';
-        context.fill();
-        context.lineWidth = 5;
-        context.strokeStyle = '#003300';
-        context.stroke();
-    }
+  for(i = 0, len = towerLocations.length; i < len; i++) {
+    centerX = towerLocations[i][0]*25 + 13;
+    centerY = towerLocations[i][1]*25 + 13;
+    context.beginPath();
+    context.arc(centerX, centerY, radius, 0, 2 * Math.PI, false);
+    context.fillStyle = 'green';
+    context.fill();
+    context.lineWidth = 5;
+    context.strokeStyle = '#003300';
+    context.stroke();
+  }
 }
 
 function drawTowers() {
@@ -92,3 +94,16 @@ window.onload = function() {
     setTimeout(gameLoop, 1000/30);
     requestAnimationFrame(drawLoop);
 };
+
+$(".towerButton").on('click', function() {
+  $(this).addClass("selectedTower");
+  $(".selectedTower").removeClass("selectedTower");
+  $(this).addClass("selectedTower");
+  damage = $(this).data("data-damage");
+  towerColor = $(this).attr("data-color");
+})
+
+$("#startBtn").on('click', function() {
+  $(this).hide();
+  $("#restartBtn").show();
+})
