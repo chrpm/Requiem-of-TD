@@ -11,7 +11,6 @@ function getPosition(event)
 
     x = Math.floor(x/25);
     y = Math.floor(y/25);
-    console.log("x: " + x + " y: " + y);
 
     if (isPointTaken(x,y)) {
         console.log("point taken");
@@ -24,8 +23,6 @@ function getPosition(event)
 
 function isPointTaken (x, y) {
     points = pathLocations.concat(towerLocations);
-    console.log(points);
-
     for(i = 0, len = points.length; i < len; i++) {
         if (points[i][0] == x && points[i][1] == y) {
             return true;

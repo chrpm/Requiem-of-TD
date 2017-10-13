@@ -54,3 +54,21 @@ function drawTowers() {
         context.stroke();
     }
 }
+
+mainLoopRender = function() {
+    context.beginPath();
+    context.clearRect(0,0,canvas.width,canvas.height);
+    drawPath();
+    drawTowers();
+    requestAnimationFrame(mainLoopRender);
+};
+
+mainLoopLogic = function() {
+    setTimeout(mainLoopLogic, 1000/30);
+};
+
+window.onload = function() {
+    populatePath();
+    setTimeout(mainLoopLogic, 1000/30);
+    requestAnimationFrame(mainLoopRender);
+};
