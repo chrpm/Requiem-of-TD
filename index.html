@@ -20,15 +20,14 @@
         </div>
         <div id="towerSelection" class="btn-group">
           <h2>Towers</h2>
-          <p id="standardTower" class="button" data-damage="10" data-color="green">Standard</p>
-          <p id="powerfulTower" class="button" data-damage="20" data-color="yellow">Powerful</p>
-          <p id="fastTower" class="button" data-damage="5" data-color="red">Fast</p>
+          <p id="standardTower" class="button towerButton selectedTower" data-damage="10" data-color="green">Standard</p>
+          <p id="powerfulTower" class="button towerButton" data-damage="20" data-color="yellow">Powerful</p>
+          <p id="fastTower" class="button towerButton" data-damage="5" data-color="red">Fast</p>
         </div>
         <div>
-          <h2>Status</h2>
-          <h3>Wave</h3>
+          <h2>Wave</h2>
           <p id="waveNumber">1</p>
-          <h3>Health</h3>
+          <h2>Health</h2>
           <p id="health">100</p>
         </div>
       </div>
@@ -52,8 +51,8 @@
         </tr>
       </table>    
     </div>
-    <script type='text/javascript' src='drawLoop.js'></script>
-    <script type='text/javascript' src='mouseEvent.js'></script>
+    <script src='./drawLoop.js'></script>
+    <script src='./mouseEvent.js'></script>
   </body>
 </html>
 
