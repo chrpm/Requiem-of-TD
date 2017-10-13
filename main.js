@@ -69,6 +69,7 @@ $(document).ready(function() {
     resetGame();
     drawTowerButtons();
     drawMoney();
+    update_scores();
 
     $(".towerButton").on('click', function() {
 	$(".selectedTower").removeClass("selectedTower");

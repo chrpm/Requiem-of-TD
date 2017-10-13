@@ -15,8 +15,8 @@ var gameInterval,
 var spawnInt = [];
 
 var towerTypes = [
-    ['Lightning', [50, 100, 0.2, 'blue']],
-    ['Fire', [200, 50, 1, 'red']],
+    ['Lightning', [50, 100, 1, 'blue']],
+    ['Fire', [200, 50, 5, 'red']],
 ];
 
 var waves = [
@@ -99,7 +99,7 @@ function resetGame() {
 
     enemyDist = [
 	[0.5, [25, 5, 5, 'green', 7, 10, 20]],
-	[0.9, [75, 10, 3, 'blue', 15, 50, 100]],
+	[0.9, [75, 10, 3, 'blue', 15, 20, 40]],
     ];
 
     towers = [];
@@ -128,10 +128,17 @@ function resetGame() {
     drawWave();
 }
 
+function gameEnd() {
+    $("#resetBtn").hide();
+    $("#startBtn").show();
+    highscore(score);
+    resetGame();
+}
+
 function gameLoop() {
 
     if (playerHealth <= 0) {
-        resetGame();
+        gameEnd();
     }
 
     context.clearRect(0, 0, canvas.width, canvas.height);
@@ -142,7 +149,8 @@ function gameLoop() {
 	tower.draw();
 	for (let e of enemies) {
 	    if (tower.targetInRange(e)) {
-		tower.fire(e);
+		  tower.fire(e);
+          break;
 	    }
 	}
     }
