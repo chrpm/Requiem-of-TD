@@ -57,7 +57,10 @@ class Enemy {
     nextTarget() {
 	if (this.targetIndex + 1 < enemyTargets.length) {
 	    this.targetIndex += 1;
-	}
+	} else {
+        this.health = 0;
+        playerHealth -= this.atk;
+    }
     }
 
     move() {

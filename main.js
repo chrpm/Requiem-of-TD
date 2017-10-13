@@ -8,7 +8,7 @@ var pathLocations = [];
 var enemyTargets = [];
 
 function populatePath() { 
-    var path = [['r', 17],['d', 4],['l', 15],['d', 4],['r', 10],['d', 12]];
+    var path = [['r', 17],['d', 4],['l', 15],['d', 11],['r', 12],['u', 8], ['l', 5], ['d', 12]];
     x = initialPosition[0];
     y = initialPosition[1];
     pathLocations.push([x, y]);
@@ -42,7 +42,8 @@ function drawPath(){
 bricks.src = "images/bricks.png";
 
 function drawMoney() {
-    $('#money').text(money);
+    $('#money').text(Math.floor(money));
+    $('#health').text(Math.floor(playerHealth));
 }
 
 function drawWave() {

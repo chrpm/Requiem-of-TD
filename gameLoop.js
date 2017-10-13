@@ -8,6 +8,7 @@ var gameInterval,
     enemyStartY,
     enemiesKilled,
     towerLocations,
+    playerHealth,
     wave = 0,
     enemyDist = [];
 
@@ -92,6 +93,9 @@ function nextWave() {
 
 function resetGame() {
     clearInterval(gameInterval);
+    for (let i of spawnInt) {
+    clearInterval(i);
+    }
 
     enemyDist = [
 	[0.5, [25, 5, 5, 'green', 7, 10, 20]],
@@ -100,9 +104,11 @@ function resetGame() {
 
     towers = [];
     enemies = [];
+
     wave = 0;
 
     money = 200;
+    playerHealth = 100;
     score = 0;
 
     enemiesKilled = 0;
@@ -114,7 +120,7 @@ function resetGame() {
     towerLocations = [];
 
     context.clearRect(0, 0, canvas.width, canvas.height);
-    context.fillStyle = "white";
+    context.fillStyle = "#FDF2E9";
     context.fillRect(0, 0, canvas.width, canvas.height);
 
     drawPath();
@@ -123,8 +129,13 @@ function resetGame() {
 }
 
 function gameLoop() {
+
+    if (playerHealth <= 0) {
+        resetGame();
+    }
+
     context.clearRect(0, 0, canvas.width, canvas.height);
-    context.fillStyle = "white";
+    context.fillStyle = "#FDF2E9";
     context.fillRect(0, 0, canvas.width, canvas.height);
     drawPath();
     for (let tower of towers) {
@@ -145,6 +156,7 @@ function gameLoop() {
 	    nextWave();
 	    
 	    money += e.moneyValue;
+        score += e.scoreValue;
 	    drawMoney();
 	    enemies.splice(i, 1);
 	} else {
