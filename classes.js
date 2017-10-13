@@ -37,7 +37,7 @@ class Tower {
 }
 
 class Enemy {
-    constructor(ctx, x, y, health = 100, atk = 10, speed = 3, color = 'green', width = 5) {
+    constructor(ctx, x, y, health = 100, atk = 10, speed = 3, color = 'green', width = 15) {
 	this.ctx = ctx;
 	this.x = x;
 	this.y = y;
@@ -71,14 +71,14 @@ class Enemy {
 		this.x = tx;
 		this.nextTarget();
 	    } else {
-		this.x += this.speed;
+		this.x += -1 * Math.sign(dx) * this.speed;
 	    }
 	} else if (Math.abs(dy) > 0) {
 	    if (Math.abs(dy) <= this.speed) {
 		this.y = ty;
 		this.nextTarget();
 	    } else {
-		this.y += this.speed;
+		this.y += -1 * Math.sign(dy) * this.speed;
 	    }
 	} else {
 	    this.nextTarget();
@@ -96,5 +96,9 @@ class Enemy {
 	} else {
 	    this.health -= dmg;
 	}
+    }
+
+    isDead() {
+	return this.health == 0;
     }
 }
