@@ -1,5 +1,7 @@
 var FPS = 30;
-var gameInterval, towers, enemies, money, score, enemyStartX, enemyStartY, spawnInt, towerLocations;
+var gameInterval, towers, enemies, money, score, enemyStartX, enemyStartY, towerLocations;
+
+var spawnInt = [];
 
 var enemyDist = [
     [0.5, [25, 5, 5, 'green', 7, 10, 20]],
@@ -56,6 +58,12 @@ function startGame() {
 }
 
 function resetGame() {
+    clearInterval(gameInterval);
+
+    for (let i of spawnInt) {
+	clearInterval(i);
+    }
+
     towers = [];
     enemies = [];
 
@@ -73,11 +81,6 @@ function resetGame() {
     context.fillRect(0, 0, canvas.width, canvas.height);
     drawPath();
 
-    clearInterval(gameInterval);
-
-    for (let i of spawnInt) {
-	clearInterval(i);
-    }
     drawMoney();
 }
 
