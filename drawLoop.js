@@ -91,8 +91,7 @@ gameLoop = function() {
 
 window.onload = function() {
     populatePath();
-    setTimeout(gameLoop, 1000/30);
-    requestAnimationFrame(drawLoop);
+    drawPath();
 };
 
 $(".towerButton").on('click', function() {
@@ -106,4 +105,6 @@ $(".towerButton").on('click', function() {
 $("#startBtn").on('click', function() {
   $(this).hide();
   $("#restartBtn").show();
+  setTimeout(gameLoop, 1000/30);
+  requestAnimationFrame(drawLoop);
 })
