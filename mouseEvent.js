@@ -1,6 +1,6 @@
 canvas.addEventListener("mousedown", getPosition, false);
 
-var towerLocations = {}
+var towerLocations = [];
 function getPosition(event)
 {
     var x = event.x;
@@ -13,8 +13,23 @@ function getPosition(event)
     y = Math.floor(y/25);
     console.log("x: " + x + " y: " + y);
 
-    if (towerLocations[[x,y]] === undefined) {
-        towerLocations[[x,y]] = "tower";
+    if (isPointTaken(x,y)) {
+        console.log("point taken");
+        return;
     }
+    towerLocations.push([x,y]);
+    if (pathLocations.length < 1) {populatePath();}
     drawTowers();
+}
+
+function isPointTaken (x, y) {
+    points = pathLocations.concat(towerLocations);
+    console.log(points);
+
+    for(i = 0, len = points.length; i < len; i++) {
+        if (points[i][0] == x && points[i][1] == y) {
+            return true;
+        }
+    }
+    return false;
 }
