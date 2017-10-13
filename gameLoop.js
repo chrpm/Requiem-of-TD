@@ -15,7 +15,7 @@ var gameInterval,
 var spawnInt = [];
 
 var towerTypes = [
-    ['Lightning', [50, 100, 1, 'blue']],
+    ['Lightning', [50, 100, 1.5, 'blue']],
     ['Fire', [200, 50, 5, 'red']],
 ];
 
