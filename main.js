@@ -45,6 +45,10 @@ function drawMoney() {
     $('#money').text(money);
 }
 
+function drawWave() {
+    $('#waveNumber').text(wave);
+}
+
 function drawTowerButtons() {
     let container = $('#towerButtons');
     $(container).empty();
