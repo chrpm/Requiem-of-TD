@@ -1,7 +1,7 @@
 body {
   margin: 5px;
   padding: 0;
-  background-image: url("/images/texture.jpg");
+  background-image: url("./images/texture.jpg");
   color: lightgray;
   font-family: "Times New Roman", serif;
   overflow-x: hidden;
