@@ -8,29 +8,29 @@ var pathLocations = [];
 var enemyTargets = [];
 
 function populatePath() { 
-    var path = [['r', 17],['d', 4],['l', 15],['d', 4],['r', 10],['d', 12]];
-    x = initialPosition[0];
-    y = initialPosition[1];
-    pathLocations.push([x, y]);
-    for (i = 0, len = path.length; i < len; i++) { 
-        for (j = path[i][1]; j > 0; j--) {
-            switch(path[i][0]) {
-                case 'l':
-                    x--;
-                    break;
-                case 'r':
-                    x++;
-                    break;
-                case 'd':
-                    y++;
-                    break;
-                case 'u':
-                    y--;
-             }
-             pathLocations.push([x,y]);
-        }
-        enemyTargets.push([x*25, y*25]);
+  var path = [['r', 17],['d', 4],['l', 15],['d', 4],['r', 10],['d', 12]];
+  x = initialPosition[0];
+  y = initialPosition[1];
+  pathLocations.push([x, y]);
+  for (i = 0, len = path.length; i < len; i++) { 
+    for (j = path[i][1]; j > 0; j--) {
+      switch(path[i][0]) {
+        case 'l':
+          x--;
+          break;
+        case 'r':
+          x++;
+          break;
+        case 'd':
+          y++;
+          break;
+        case 'u':
+          y--;
+      }
+      pathLocations.push([x,y]);
     }
+    enemyTargets.push([x*25, y*25]);
+  }
 }
 
 bricks = new Image();
@@ -60,39 +60,38 @@ function drawTowers() {
 }
 
 function drawTowers() {
-    var centerX;
-    var centerY;
-    var radius = 8;
+  var centerX;
+  var centerY;
+  var radius = 8;
 
-    for(i = 0, len = towerLocations.length; i < len; i++) {
-        centerX = towerLocations[i][0]*25 + 13;
-        centerY = towerLocations[i][1]*25 + 13;
-        context.beginPath();
-        context.arc(centerX, centerY, radius, 0, 2 * Math.PI, false);
-        context.fillStyle = 'green';
-        context.fill();
-        context.lineWidth = 5;
-        context.strokeStyle = '#003300';
-        context.stroke();
-    }
+  for(i = 0, len = towerLocations.length; i < len; i++) {
+    centerX = towerLocations[i][0]*25 + 13;
+    centerY = towerLocations[i][1]*25 + 13;
+    context.beginPath();
+    context.arc(centerX, centerY, radius, 0, 2 * Math.PI, false);
+    context.fillStyle = 'green';
+    context.fill();
+    context.lineWidth = 5;
+    context.strokeStyle = '#003300';
+    context.stroke();
+  }
 }
 
 drawLoop = function() {
-    context.beginPath();
-    context.clearRect(0,0,canvas.width,canvas.height);
-    drawPath();
-    drawTowers();
-    requestAnimationFrame(drawLoop);
+  context.beginPath();
+  context.clearRect(0,0,canvas.width,canvas.height);
+  drawPath();
+  drawTowers();
+  requestAnimationFrame(drawLoop);
 };
 
 gameLoop = function() {
-    setTimeout(gameLoop, 1000/30);
+  setTimeout(gameLoop, 1000/30);
 };
 
 window.onload = function() {
-    populatePath();
-    setTimeout(gameLoop, 1000/30);
-    requestAnimationFrame(drawLoop);
+  populatePath();
+  drawPath();
 };
 
 $(".towerButton").on('click', function() {
@@ -106,6 +105,8 @@ $(".towerButton").on('click', function() {
 $("#startBtn").on('click', function() {
   $(this).hide();
   $("#resetBtn").show();
+  setTimeout(gameLoop, 1000/30);
+  requestAnimationFrame(drawLoop);
 })
 
 $("#resetBtn").on('click', function() {
