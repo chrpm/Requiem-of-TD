@@ -5,7 +5,10 @@ var towerColor = $(".selectedTower").attr("data-color");
 
 var initialPosition = [0,1];
 var pathLocations = [];
+var towerLocations = [];
 var enemyTargets = [];
+var towers = [];
+var enemies = [];
 
 function populatePath() { 
   var path = [['r', 17],['d', 4],['l', 15],['d', 4],['r', 10],['d', 12]];
@@ -41,56 +44,30 @@ function drawPath(){
 }
 bricks.src = "images/bricks.png";
 
-function drawTowers() {
-  var centerX;
-  var centerY;
-  var radius = 8;
-
-  for(i = 0, len = towerLocations.length; i < len; i++) {
-    centerX = towerLocations[i][0]*25 + 13;
-    centerY = towerLocations[i][1]*25 + 13;
-    context.beginPath();
-    context.arc(centerX, centerY, radius, 0, 2 * Math.PI, false);
-    context.fillStyle = towerColor;
-    context.fill();
-    context.lineWidth = 5;
-    context.strokeStyle = '#003300';
-    context.stroke();
-  }
-}
-
-function drawTowers() {
-  var centerX;
-  var centerY;
-  var radius = 8;
-
-  for(i = 0, len = towerLocations.length; i < len; i++) {
-    centerX = towerLocations[i][0]*25 + 13;
-    centerY = towerLocations[i][1]*25 + 13;
-    context.beginPath();
-    context.arc(centerX, centerY, radius, 0, 2 * Math.PI, false);
-    context.fillStyle = 'green';
-    context.fill();
-    context.lineWidth = 5;
-    context.strokeStyle = '#003300';
-    context.stroke();
-  }
-}
-
-drawLoop = function() {
-  context.beginPath();
-  context.clearRect(0,0,canvas.width,canvas.height);
-  drawPath();
-  drawTowers();
-  requestAnimationFrame(drawLoop);
-};
-
 gameLoop = function() {
+  context.fillStyle = "white";
+  context.fillRect(0,0,canvas.width,canvas.height);
+  drawPath();
+  for (let tower of towers) {
+      tower.draw();
+      for (let e of enemies) {
+	  if (tower.targetInRange(e)) {
+	      tower.fire(e);
+	  }
+      }
+  }
+
+    for (let e of enemies) {
+	e.move();
+	e.draw();
+    }
   setTimeout(gameLoop, 1000/30);
 };
 
 window.onload = function() {
   populatePath();
+  context.fillStyle = "white";
+  context.fillRect(0,0,canvas.width,canvas.height);
   drawPath();
 };
 
@@ -105,8 +82,10 @@ $(".towerButton").on('click', function() {
 $("#startBtn").on('click', function() {
   $(this).hide();
   $("#resetBtn").show();
-  setTimeout(gameLoop, 1000/30);
-  requestAnimationFrame(drawLoop);
+  //setTimeout(gameLoop, 1000/30);
+    enemies.push(new Enemy(context, 0, 25));
+    gameLoop();
+    
 })
 
 $("#resetBtn").on('click', function() {

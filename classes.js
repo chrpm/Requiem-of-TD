@@ -1,5 +1,5 @@
 class Tower {
-    constructor(ctx, x, y, range = 5, attack = 10, color = 'blue') {
+    constructor(ctx, x, y, range = 100, attack = 10, color = 'blue') {
 	this.ctx = ctx;
 	this.x = x;
 	this.y = y;
@@ -63,22 +63,22 @@ class Enemy {
 	let tx = target[0];
 	let ty = target[1];
 	
-	let dx = Math.abs(this.x - tx);
-	let dy = Math.abs(this.y - ty);
+	let dx = this.x - tx;
+	let dy = this.y - ty;
 	
-	if (dx > 0) {
-	    if (dx <= this.speed) {
+	if (Math.abs(dx) > 0) {
+	    if (Math.abs(dx) <= this.speed) {
 		this.x = tx;
 		this.nextTarget();
 	    } else {
-		this.x += speed;
+		this.x += this.speed;
 	    }
-	} else if (dy > 0) {
-	    if (dy <= this.speed) {
+	} else if (Math.abs(dy) > 0) {
+	    if (Math.abs(dy) <= this.speed) {
 		this.y = ty;
 		this.nextTarget();
 	    } else {
-		this.y += speed;
+		this.y += this.speed;
 	    }
 	} else {
 	    this.nextTarget();
@@ -87,7 +87,7 @@ class Enemy {
     
     draw() {
 	this.ctx.fillStyle = this.color;
-	this.ctx.fillRect(x, y, width, width);
+	this.ctx.fillRect(this.x, this.y, this.width, this.width);
     }
 
     hit(dmg) {
