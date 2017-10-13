@@ -13,7 +13,6 @@ function getPosition(event)
     y = Math.floor(y/25);
 
     if (isPointTaken(x,y)) {
-        console.log("point taken");
         return;
     }
     towerLocations.push([x,y]);

@@ -3,6 +3,8 @@ var context = canvas.getContext('2d');
 
 var initialPosition = [0,1];
 var pathLocations = [];
+var enemyTargets = [];
+
 function populatePath() { 
     var path = [['r', 17],['d', 4],['l', 15],['d', 4],['r', 10],['d', 12]];
     x = initialPosition[0];
@@ -25,8 +27,8 @@ function populatePath() {
              }
              pathLocations.push([x,y]);
         }
+        enemyTargets.push([x*25, y*25]);
     }
-    drawPath();
 }
 
 bricks = new Image();
@@ -55,20 +57,38 @@ function drawTowers() {
     }
 }
 
-mainLoopRender = function() {
+function drawTowers() {
+    var centerX;
+    var centerY;
+    var radius = 8;
+
+    for(i = 0, len = towerLocations.length; i < len; i++) {
+        centerX = towerLocations[i][0]*25 + 13;
+        centerY = towerLocations[i][1]*25 + 13;
+        context.beginPath();
+        context.arc(centerX, centerY, radius, 0, 2 * Math.PI, false);
+        context.fillStyle = 'green';
+        context.fill();
+        context.lineWidth = 5;
+        context.strokeStyle = '#003300';
+        context.stroke();
+    }
+}
+
+drawLoop = function() {
     context.beginPath();
     context.clearRect(0,0,canvas.width,canvas.height);
     drawPath();
     drawTowers();
-    requestAnimationFrame(mainLoopRender);
+    requestAnimationFrame(drawLoop);
 };
 
-mainLoopLogic = function() {
-    setTimeout(mainLoopLogic, 1000/30);
+gameLoop = function() {
+    setTimeout(gameLoop, 1000/30);
 };
 
 window.onload = function() {
     populatePath();
-    setTimeout(mainLoopLogic, 1000/30);
-    requestAnimationFrame(mainLoopRender);
+    setTimeout(gameLoop, 1000/30);
+    requestAnimationFrame(drawLoop);
 };
