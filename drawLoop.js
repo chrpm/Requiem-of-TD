@@ -8,6 +8,7 @@ var pathLocations = [];
 var towerLocations = [];
 var enemyTargets = [];
 var towers = [];
+var enemies = [];
 
 function populatePath() { 
   var path = [['r', 17],['d', 4],['l', 15],['d', 4],['r', 10],['d', 12]];
@@ -47,9 +48,19 @@ gameLoop = function() {
   context.fillStyle = "white";
   context.fillRect(0,0,canvas.width,canvas.height);
   drawPath();
-  for (tower of towers) {
-    tower.draw();
+  for (let tower of towers) {
+      tower.draw();
+      for (let e of enemies) {
+	  if (tower.targetInRange(e)) {
+	      tower.fire(e);
+	  }
+      }
   }
+
+    for (let e of enemies) {
+	e.move();
+	e.draw();
+    }
   setTimeout(gameLoop, 1000/30);
 };
 
@@ -71,7 +82,10 @@ $(".towerButton").on('click', function() {
 $("#startBtn").on('click', function() {
   $(this).hide();
   $("#resetBtn").show();
-  setTimeout(gameLoop, 1000/30);
+  //setTimeout(gameLoop, 1000/30);
+    enemies.push(new Enemy(context, 0, 25));
+    gameLoop();
+    
 })
 
 $("#resetBtn").on('click', function() {
