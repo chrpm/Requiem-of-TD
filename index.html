@@ -1,34 +1,59 @@
 <!DOCTYPE html>
 <html xml:lang="en" lang="en">
-   <head>
-        <meta name="description" content="Basic TD Game">
-        <meta name="author" content="We Love Hot Dads">
-        <meta charset="utf-8">
-        <title>Requiem of TD</title>
-        <link rel="stylesheet" type="text/css" href="dads.css" />
-        <link rel="stylesheet" href="highscore.css">
-        <script src="jquery-3.2.1.min.js"></script>
-    </head>       
-    <body>
-        <canvas id="game_canvas" width="500" height="500" style="border:1px solid black"></canvas>
-        <div id="highdiv">
-            <table id="hightable">
-                <tr>
-                    <th>User</th>
-                    <th>Score</th>
-                </tr>
-            </table>
-            <table id="myhightable">
-                <tr>
-                    <th colspan="2">Your High Score</th>
-                </tr>
-                <tr id="myhighscore">
-                    <td colspan="2">You don't have one yet!</td>
-                </tr>
-            </table>    
+  <head>
+    <meta name="description" content="Basic TD Game">
+    <meta name="author" content="We Love Hot Dads">
+    <meta charset="utf-8">
+    <title>Requiem of TD</title>
+    <link rel="stylesheet" type= "text/css" href="main.css" />
+    <link rel="stylesheet" href="highscore.css">
+    <script src="jquery-3.2.1.min.js"></script>
+  </head>       
+  <body>
+    <header>
+      <h1 id="gameTitle">Requiem of Tower Defense</h1>
+    </header>
+    <section>
+      <div id="gameInfo">
+        <div id="startBtnGroup" class="btn-group">
+          <p id="startBtn" class="button" data-color="green">Start</p>
+          <p id="resetBtn" class="button" data-color="red" style="display: none;">Reset</p>
         </div>
-        <script type='text/javascript' src='drawLoop.js'></script>
-        <script type='text/javascript' src='mouseEvent.js'></script>
-    </body>
+        <div id="towerSelection" class="btn-group">
+          <h2>Towers</h2>
+          <p id="standardTower" class="button towerButton selectedTower" data-damage="10" data-color="green">Standard</p>
+          <p id="powerfulTower" class="button towerButton" data-damage="20" data-color="yellow">Powerful</p>
+          <p id="fastTower" class="button towerButton" data-damage="5" data-color="red">Fast</p>
+        </div>
+        <div>
+          <h2>Wave</h2>
+          <p id="waveNumber">1</p>
+          <h2>Health</h2>
+          <p id="health">100</p>
+        </div>
+      </div>
+      <div id="canvasContainer">
+        <canvas id="game_canvas" width="500" height="500"></canvas>
+      </div>
+    </section>
+    <div id="highdiv">
+      <table id="hightable">
+        <tr>
+          <th>User</th>
+          <th>Score</th>
+        </tr>
+      </table>
+      <table id="myhightable">
+        <tr>
+          <th colspan="2">Your High Score</th>
+        </tr>
+        <tr id="myhighscore">
+          <td colspan="2">You don't have one yet!</td>
+        </tr>
+      </table>    
+    </div>
+    <script src='./drawLoop.js'></script>
+    <script src='./mouseEvent.js'></script>
+  </body>
 </html>
-       
+
