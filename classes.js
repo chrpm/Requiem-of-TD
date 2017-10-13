@@ -1,10 +1,15 @@
 class Tower {
-    constructor(ctx, x, y, range = 5, color = 'blue') {
+    constructor(ctx, x, y, range = 5, attack = 10, color = 'blue') {
 	this.ctx = ctx;
 	this.x = x;
 	this.y = y;
 	this.range = range;
+	this.attack = attack;
 	this.color = color;
+
+	this.radius = 10;
+
+	this.draw();
     }
     
     fire(target) {
@@ -13,6 +18,8 @@ class Tower {
 	this.ctx.lineTo(target.x, target.y);
 	this.ctx.strokeStyle = this.color;
 	this.ctx.stroke();
+
+	target.hit(this.attack);
     }
 
     draw() {
@@ -81,5 +88,13 @@ class Enemy {
     draw() {
 	this.ctx.fillStyle = this.color;
 	this.ctx.fillRect(x, y, width, width);
+    }
+
+    hit(dmg) {
+	if (this.health - dmg < 0) {
+	    this.health = 0;
+	} else {
+	    this.health -= dmg;
+	}
     }
 }
