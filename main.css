@@ -22,11 +22,12 @@ header {
   position: static;
   vertical-align: middle;
   color: white;
-  text-shadow: 1px 1px 2px black, 0 0 25px yellow, 0 0 5px gold;
-  background-color: rgba(255,255,255,0.8);
+  text-shadow: 1px 1px 2px white, 0 0 25px red, 0 0 5px purple;
   border-radius: 5px;
   padding: 3px;
   margin: 0;
+  background: red; /* For browsers that do not support gradients */
+  background: linear-gradient(green, yellow); /* Standard syntax (must be last) */
 }
 
 div#gameInfo {
@@ -82,7 +83,7 @@ div#gameInfo {
 div#gameInfo div {
   text-align: center;
   margin: 5px;
-  padding 0;
+  padding: 0px;
 }
 
 div#towerSelection {
@@ -97,52 +98,32 @@ header img.right {
   position: absolute;
   right: 2%;
   top: 0;
-  -webkit-animation-name: exampleRight; /* Safari 4.0 - 8.0 */
-  -webkit-animation-duration: 4s; /* Safari 4.0 - 8.0 */
-  -webkit-animation-iteration-count: infinite; /* Safari 4.0 - 8.0 */
   animation-name: exampleRight;
   animation-duration: 4s;
   animation-iteration-count: infinite;
 }
 
-/* Safari 4.0 - 8.0 */
-@-webkit-keyframes exampleRight {
-    0%   {right:2%;}
-    50%  {right:20%;}
-    100% {right:2%;}
-}
-
 /* Standard syntax */
 @keyframes exampleLeft {
-    0%   {right:2%;}
-    50%  {right:20%;}
-    100% {right:2%;}
+  0%   {right:2%;}
+  50%  {right:20%;}
+  100% {right:2%;}
 }
 
 header img.left {
   position: absolute;
   left: 2%;
   top: 0;
-  -webkit-animation-name: exampleLeft; /* Safari 4.0 - 8.0 */
-  -webkit-animation-duration: 4s; /* Safari 4.0 - 8.0 */
-  -webkit-animation-iteration-count: infinite; /* Safari 4.0 - 8.0 */
   animation-name: exampleLeft;
   animation-duration: 4s;
   animation-iteration-count: infinite;
 }
 
-/* Safari 4.0 - 8.0 */
-@-webkit-keyframes exampleLeft {
-    0%   {left:0px; top:0px;}
-    50%  {left:200px; top:200px;}
-    100% {left:0px; top:0px;}
-}
-
 /* Standard syntax */
 @keyframes exampleLeft {
-    0%   {left:2%; top:0px;}
-    50%  {left:20%; top:0px;}
-    100% {left:2%; top:0px;}
+  0%   {left:2%; top:0px;}
+  50%  {left:20%; top:0px;}
+  100% {left:2%; top:0px;}
 }
 
 header h1 {

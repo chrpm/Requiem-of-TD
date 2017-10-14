@@ -13,6 +13,6 @@ Reasons For 100:
         Can easily make new types of towers and enemies
             Only have to can the defination in one place
         Enemy Path is easy to change to quickly create new levels
-            You just have to set a direction and length for a bit of the            path and it draws the path and sets the enemies along it.
+            You just have to set a direction and length for a bit of the path and it draws the path and sets the enemies along it.
 
     Game gets harder as time passes
